@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "CUSTODI \u2014 Your Personal Digital Bodyguard",
+  "short_name": "CUSTODI",
+  "version": "0.2.0",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtlqIgZNztLf9VfuobX7HII+gKFlesJ1Kp8S1eE07rjpIDvskXg0DTOFNFzcoXay3cq3uQK/LgQrb9JoI1zym0o5mxQAb7BYoZpBmcD+29iv3KGurwhtCvYJqIf6icJubO/QhgmHdmwXV6xZDLXeJZL6NRKqZOb0R93zoc8r8RRAxs+oUOl9DylOyxmG5v31Mr8HcSrtujqylhyZMS7VgHmuBRrHUdhUhNqgLmaQ8lIwtyL9k4opG+mVy1niNLQBL/8eH2E8u0pSyn600CEQZovzYkJFrp6R1apqNQKaqToOhR8mVUlrv7/ucITSAUsjx5+P+vHPDlCJ7Q4ZrzrSHhQIDAQAB",
+  "description": "Check suspicious placement messages and the page you're on. Scans only when you click, or during a Live Observe session you start and can stop.",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "CUSTODI",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "alarms"
+  ],
+  "optional_host_permissions": [
+    "<all_urls>"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "externally_connectable": {
+    "matches": [
+      "http://localhost/*",
+      "http://127.0.0.1/*"
+    ]
+  }
+}

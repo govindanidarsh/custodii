@@ -1,0 +1,2 @@
+# Backend dependencies are added in Phase 3 (owner: Darsh).
+# Planned: fastapi, uvicorn[standard], pydantic>=2, anthropic, httpx, pytest

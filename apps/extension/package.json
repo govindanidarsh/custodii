@@ -1,0 +1,19 @@
+{
+  "name": "@custodi/extension",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && vite build",
+    "dev": "vite build --watch",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@custodi/core": "*"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.3.7",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.7"
+  }
+}

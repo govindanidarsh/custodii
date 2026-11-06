@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Welcome to CUSTODI</title>
+    <link rel="icon" href="/icons/icon-32.png" />
+    <link rel="stylesheet" href="./src/popup.css" />
+    <style>
+      body { width: auto; max-width: 760px; margin: 0 auto; padding: 48px 24px 64px; font-size: 15px; }
+      h1 { font-family: ui-serif, Georgia, serif; font-weight: 400; font-size: 44px; line-height: 1.05; margin: 18px 0 8px; letter-spacing: -0.01em; }
+      h2 { font-size: 17px; margin: 0 0 6px; }
+      .steps { list-style: none; padding: 0; margin: 28px 0; display: grid; gap: 12px; counter-reset: s; }
+      .steps li { counter-increment: s; display: grid; grid-template-columns: 40px 1fr; gap: 12px; padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+      .steps li::before { content: counter(s); font-family: ui-serif, Georgia, serif; font-size: 30px; line-height: 1; color: var(--accent); }
+      .steps p { margin: 0; color: var(--muted); }
+      .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      .card { padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+      code { font-family: ui-monospace, Menlo, monospace; font-size: 13px; background: var(--surface-2); padding: 1px 6px; border-radius: 6px; }
+      @media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <header class="top"><img src="/assets/custodi-emblem.png" alt="CUSTODI emblem" style="height:56px;width:auto;aspect-ratio:262/334;object-fit:contain" /><span class="brand" style="font-size:20px">CUSTODI</span></header>
+    <h1>You're set up. Now pin CUSTODI.</h1>
+    <p class="muted">Think before you trust. Verify before you act.</p>
+
+    <ol class="steps">
+      <li><div><h2>Pin it to the toolbar</h2><p>Click the puzzle-piece icon to the right of the address bar, find <b>CUSTODI</b> and click the pin. Risk badges (<b>!</b> high, <b>?</b> medium) and the <b>ON</b> badge appear on that icon.</p></div></li>
+      <li><div><h2>Scan the page you're on</h2><p>Open any website → click the CUSTODI icon → <b>This page</b> → <b>Scan this page</b>. CUSTODI checks the address, the visible text and whether the page asks for OTPs, PINs, passwords or card numbers.</p></div></li>
+      <li><div><h2>Check a message</h2><p>Paste an email, SMS or WhatsApp text into the <b>Message</b> tab. You get the verdict, the exact suspicious words and every check CUSTODI ran.</p></div></li>
+      <li><div><h2>Start and stop Live Observe</h2><p><b>Live Observe</b> tab → pick 15, 30 or 60 minutes → <b>Start</b> and allow the permission Chrome asks for. Each page you view is checked while the timer runs. Press <b>Stop now</b> any time to see the session summary — the permission is handed back automatically.</p></div></li>
+    </ol>
+
+    <div class="grid2">
+      <div class="card">
+        <h2>What CUSTODI can see</h2>
+        <ul class="ticks">
+          <li>The current tab — only when you click, or during Live Observe</li>
+          <li>Its address, visible text and form-field types</li>
+          <li>Results are stored only in this browser</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>What it never does</h2>
+        <ul class="crosses">
+          <li>Run in secret or after the timer ends</li>
+          <li>Read what you type, passwords or other apps</li>
+          <li>Send page content anywhere</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="tiny" style="margin-top: 24px">Updated the code? Run <code>npm run build:extension</code>, then click ↻ on CUSTODI in <code>chrome://extensions</code>. The extension is loaded from <code>apps/extension/dist</code> (the folder with <code>manifest.json</code>).</p>
+    <footer class="foot">Automated warning signs, not proof. Verify offers with your placement cell.</footer>
+  </body>
+</html>

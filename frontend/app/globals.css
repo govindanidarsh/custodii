@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/* TrustLayer AI design tokens. Light theme only for the MVP. */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora Variable", "Inter Variable", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --color-ink: #0b1324;
+  --color-ink-soft: #334058;
+  --color-muted: #5f6b82;
+  --color-line: #e3e7ef;
+  --color-line-strong: #cfd6e3;
+  --color-canvas: #f7f8fc;
+  --color-surface: #ffffff;
+
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c5d0ff;
+  --color-brand-500: #4f6bff;
+  --color-brand-600: #3b54e8;
+  --color-brand-700: #2f43c2;
+
+  --color-violet-50: #f4f0ff;
+  --color-violet-100: #ebe4ff;
+  --color-violet-500: #7c5cff;
+  --color-violet-600: #6a46f0;
+
+  --color-risk-high: #c42b2b;
+  --color-risk-high-bg: #fdeeee;
+  --color-risk-medium: #a15c00;
+  --color-risk-medium-bg: #fff4e0;
+  --color-risk-low: #18794e;
+  --color-risk-low-bg: #e9f7ef;
+
+  --shadow-card: 0 1px 2px rgb(11 19 36 / 0.04), 0 8px 24px -12px rgb(11 19 36 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(11 19 36 / 0.04), 0 24px 48px -20px rgb(59 84 232 / 0.28);
+
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-scan: scan 1.6s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes scan {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(250%);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-brand-100);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+/* Fine dotted grid used behind the hero. */
+.bg-grid {
+  background-image: radial-gradient(rgb(79 107 255 / 0.14) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Scroll reveal — see components/ui/Reveal.tsx */
+/* Only hide content when JS is running, so the page never renders blank. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="color-scheme" content="light dark" />
+    <title>CUSTODI</title>
+    <link rel="stylesheet" href="./src/popup.css" />
+  </head>
+  <body>
+    <div id="intro" class="intro" hidden role="dialog" aria-label="CUSTODI introduction">
+      <div class="intro-stage">
+        <span class="intro-emblem"><img src="/assets/custodi-emblem.png" alt="CUSTODI emblem" /><span class="intro-pass"></span></span>
+        <span class="intro-word">CUSTODI</span>
+        <span class="intro-tag">Think before you trust. Verify before you act.</span>
+      </div>
+      <button id="intro-skip" class="intro-skip">Skip</button>
+    </div>
+    <header class="top">
+      <img class="top-emblem" src="/assets/custodi-emblem.png" alt="" />
+      <span class="brand">CUSTODI</span>
+      <span id="status-chip" class="chip chip-off" role="status">Live Observe off</span>
+    </header>
+
+    <nav class="tabs" role="tablist" aria-label="CUSTODI sections">
+      <button role="tab" id="tab-page" data-tab="page" aria-selected="true">This page</button>
+      <button role="tab" id="tab-message" data-tab="message" aria-selected="false">Message</button>
+      <button role="tab" id="tab-live" data-tab="live" aria-selected="false">Live Observe</button>
+      <button role="tab" id="tab-history" data-tab="history" aria-selected="false">History</button>
+    </nav>
+
+    <section data-panel="page" role="tabpanel" aria-labelledby="tab-page">
+      <p class="lead">Check the tab you're looking at right now.</p>
+      <p class="muted">CUSTODI reads the address, the visible text and which kinds of sensitive fields (password, OTP, card) the page has. It never reads what you type.</p>
+      <button id="scan-page" class="btn btn-primary">Scan this page</button>
+      <div id="page-result" aria-live="polite"></div>
+    </section>
+
+    <section data-panel="message" role="tabpanel" aria-labelledby="tab-message" hidden>
+      <label for="msg" class="label">Paste a suspicious message</label>
+      <textarea id="msg" rows="6" maxlength="10000" placeholder="Paste the email, WhatsApp message or SMS…"></textarea>
+      <div class="row">
+        <select id="channel" aria-label="Where did it arrive?">
+          <option value="email">Email</option>
+          <option value="whatsapp" selected>WhatsApp</option>
+          <option value="sms">SMS</option>
+          <option value="other">Other text</option>
+        </select>
+        <button id="scan-msg" class="btn btn-primary grow">Analyse</button>
+      </div>
+      <div id="msg-result" aria-live="polite"></div>
+    </section>
+
+    <section data-panel="live" role="tabpanel" aria-labelledby="tab-live" hidden>
+      <div id="live-off">
+        <p class="lead">A protection session you control.</p>
+        <div class="split">
+          <div>
+            <p class="label">While it runs</p>
+            <ul class="ticks">
+              <li>Checks the tab you're viewing when you switch to it or it finishes loading</li>
+              <li>Shows a risk badge on this icon</li>
+              <li>Keeps results only (not page text)</li>
+            </ul>
+          </div>
+          <div>
+            <p class="label">It never</p>
+            <ul class="crosses">
+              <li>Runs in secret or after the timer</li>
+              <li>Reads what you type or passwords</li>
+              <li>Sees WhatsApp, SMS or other apps</li>
+            </ul>
+          </div>
+        </div>
+        <p class="label" id="dur-label">Duration</p>
+        <div class="seg" role="radiogroup" aria-labelledby="dur-label">
+          <button role="radio" data-min="15" aria-checked="false">15 min</button>
+          <button role="radio" data-min="30" aria-checked="true">30 min</button>
+          <button role="radio" data-min="60" aria-checked="false">60 min</button>
+        </div>
+        <button id="live-start" class="btn btn-primary">Start Live Observe</button>
+        <p class="tiny">Chrome will ask to let CUSTODI "read and change data on websites". It is needed only so CUSTODI can check pages during the session, and CUSTODI gives it back when the session stops.</p>
+      </div>
+
+      <div id="live-on" hidden>
+        <div class="timer-wrap">
+          <span class="on-dot" aria-hidden="true"></span>
+          <p class="timer" id="live-timer" aria-live="off">--:--</p>
+          <p class="muted center">Live Observe is ON · checking your current tab</p>
+        </div>
+        <button id="live-stop" class="btn btn-danger">Stop now</button>
+        <p class="label">Pages checked this session</p>
+        <ul id="live-events" class="events"></ul>
+      </div>
+
+      <div id="live-summary" hidden>
+        <p class="label">Last session summary</p>
+        <div id="summary-body"></div>
+      </div>
+      <p id="live-error" class="error" hidden></p>
+    </section>
+
+    <section data-panel="history" role="tabpanel" aria-labelledby="tab-history" hidden>
+      <ul id="history" class="events"></ul>
+      <div class="row">
+        <button id="export" class="btn btn-ghost">Export JSON</button>
+        <button id="clear" class="btn btn-ghost danger-text">Clear history</button>
+      </div>
+    </section>
+
+    <footer class="foot">Automated warning signs, not proof. Verify offers with your placement cell. · <button id="replay-intro" class="linkbtn">Replay intro</button></footer>
+    <script type="module" src="./src/popup.ts"></script>
+  </body>
+</html>
